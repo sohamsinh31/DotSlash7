@@ -3,7 +3,9 @@ import "./Button.css"
 type BtnProps = {
     children: React.ReactNode,
     bgColor?: string,
-    color?: string
+    color?: string,
+    width?: string,
+    height?: string
 }
 
 export const Button = (props: BtnProps) => {
