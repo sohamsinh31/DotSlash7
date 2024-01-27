@@ -2,6 +2,8 @@ export function analyzeCode(code: string) {
     const lines = code.split('\n');
     const result: { variableName?: any; dataType?: any; bytesize: string | number; time: string | number; functionName?: any; }[] = [];
 
+    let insideFunction = false;
+
     lines.forEach((line) => {
         // Analyze variable declarations
         const variableDeclarationMatch = line.match(/(\w+)\s+(\w+)\s*(?:\[\s*(\d+)\s*\])?\s*=\s*(.*?);/);
@@ -23,7 +25,7 @@ export function analyzeCode(code: string) {
             }
 
             // Calculate time complexity for array declarations
-            let timeComplexity = 0;
+            let timeComplexity = 1;
             if (arraySize) {
                 // Assuming each array element uses 4 bytes and accessing an element takes 1 unit of time
                 bytesize = parseInt(arraySize, 10) * 4;
@@ -38,8 +40,15 @@ export function analyzeCode(code: string) {
         if (functionCallMatch) {
             const [, functionName] = functionCallMatch;
             // Assuming each function call takes 2 units of time (adjust as needed based on your requirements)
-            const timeComplexity = 2;
+            const timeComplexity = insideFunction ? 2 : 1;
             result.push({ functionName, bytesize: 'N/A', time: timeComplexity });
+        }
+
+        // Identify the start and end of a function block
+        if (line.includes('{')) {
+            insideFunction = true;
+        } else if (line.includes('}')) {
+            insideFunction = false;
         }
     });
 
