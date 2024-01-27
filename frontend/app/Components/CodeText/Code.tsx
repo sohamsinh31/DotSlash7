@@ -8,7 +8,7 @@ type CodeTextAreaProps = {
 
 const CodeTextArea: React.FC<CodeTextAreaProps> = ({ value, onChange }) => (
   <textarea
-    style={{ fontFamily: 'monospace', padding: '10px', borderRadius: '5px', minHeight: '200px', width: '92%' }}
+    style={{ fontFamily: 'monospace', padding: '10px', borderRadius: '5px', minHeight: '200px', width: '93%' }}
     className="codepen"
     value={value}
     onChange={onChange}

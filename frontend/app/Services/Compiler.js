@@ -1,4 +1,5 @@
 const getOutput = (code) => {
+    console.log(code)
     return new Promise((resolve, reject) => {
         fetch('http://localhost:8000/compile', {
             method: 'POST',

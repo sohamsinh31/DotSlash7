@@ -11,74 +11,37 @@ import { analyzeCode } from '@/Services/CodeT';
 import getOutput from '@/Services/Compiler';
 import CodeTextArea from '@/Components/CodeText';
 import OutputWindow from '@/Components/Output/Output';
+import "./Demo.css"
 
 export const Demo: React.FC = () => {
 
     const [output, setOutput] = useState('');
     const [code, setCode] = useState(`#include <stdio.h>
 
-    void printGraph(int** graph, int numVertices) {
-        FILE *fp = fopen("graph_data.js", "w");
-        
-        if (fp == NULL) {
-            perror("Error opening file");
-            return;
-        }
+    #define MAX_VERTICES 5
     
-        fprintf(fp, "export const GraphData = {\n");
-        fprintf(fp, "  nodes: [\n");
+    int main() {
+        int graph[MAX_VERTICES][MAX_VERTICES] = {
+            {0, 1, 0, 0, 1},
+            {1, 0, 0, 1, 0},
+            {0, 0, 0, 0, 0},
+            {0, 1, 0, 0, 1},
+            {1, 0, 0, 1, 0}
+        };
     
-        for (int i = 0; i < numVertices; i++) {
-            fprintf(fp, "    { id: 'Node%d', label: 'Value %d' },\n", i + 1, i + 1);
-        }
+        printf("Edges in the graph:\\n");
     
-        fprintf(fp, "  ],\n");
-        fprintf(fp, "  links: [\n");
-    
-        for (int i = 0; i < numVertices; i++) {
-            for (int j = i + 1; j < numVertices; j++) {
+        for (int i = 0; i < MAX_VERTICES; i++) {
+            for (int j = i + 1; j < MAX_VERTICES; j++) {
                 if (graph[i][j] == 1) {
-                    fprintf(fp, "    { source: 'Node%d', target: 'Node%d' },\n", i + 1, j + 1);
+                    printf("(%d, %d)\\n", i + 1, j + 1);
                 }
             }
         }
     
-        fprintf(fp, "  ]\n");
-        fprintf(fp, "};\n");
-    
-        fclose(fp);
-    }
-    
-    int main() {
-        int numVertices = 5;
-    
-        // Dynamically allocate memory for the 2D array
-        int** graph = (int**)malloc(numVertices * sizeof(int*));
-        for (int i = 0; i < numVertices; i++) {
-            graph[i] = (int*)malloc(numVertices * sizeof(int));
-            for (int j = 0; j < numVertices; j++) {
-                graph[i][j] = 0; // Initialize to 0 (no edge)
-            }
-        }
-    
-        // Add edges to the graph
-        graph[0][1] = 1;
-        graph[0][4] = 1;
-        graph[1][3] = 1;
-        graph[3][4] = 1;
-    
-        // Print the graph in the desired JavaScript format
-        printGraph(graph, numVertices);
-    
-        // Free allocated memory
-        for (int i = 0; i < numVertices; i++) {
-            free(graph[i]);
-        }
-        free(graph);
-    
         return 0;
-    }
-    
+    }    
+
     `);
 
     const [memoryStack, setMemoryStack] = useState<MemoryStackItem[]>([]);
