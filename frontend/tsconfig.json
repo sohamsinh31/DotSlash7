@@ -22,6 +22,6 @@
       "@/*": ["./app/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/Components/Card/InnerCard.js", "app/Components/SearchBar/searchbar.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/Components/Card/InnerCard.js", "app/Components/SearchBar/searchbar.tsx", "app/Components/Button/Button.tsx"],
   "exclude": ["node_modules"]
 }

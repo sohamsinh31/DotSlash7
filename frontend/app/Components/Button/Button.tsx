@@ -5,7 +5,8 @@ type BtnProps = {
     bgColor?: string,
     color?: string,
     width?: string,
-    height?: string
+    height?: string,
+    style?: React.CSSProperties
 }
 
 export const Button = (props: BtnProps) => {
@@ -13,7 +14,8 @@ export const Button = (props: BtnProps) => {
         <button
             className="button"
             style={{
-                backgroundColor: props.bgColor ? props.bgColor : "none"
+                backgroundColor: props.bgColor ? props.bgColor : "none",
+                ...props.style
             }}
         >
             {props.children}

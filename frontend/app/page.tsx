@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from './Components/Sidebar';
 import Navbar from './Components/Navbar';
+import Content from './Components/Content';
 
 export default function App() {
   return (
@@ -9,7 +10,7 @@ export default function App() {
       <Sidebar />
       <div className="container" style={{ flex: 1, padding: '20px' }}>
         <Navbar />
-        {/* Other main content goes here */}
+        <Content />
       </div>
     </div>
   );

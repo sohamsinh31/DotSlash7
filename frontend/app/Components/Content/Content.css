@@ -1,0 +1,20 @@
+.upperBar {
+    display: flex;
+}
+
+.textBar {
+    width: 65%;
+}
+
+.imageBar {
+    width: 35%;
+    margin: 1px;
+}
+
+.imageR {
+    width: 480px;
+}
+
+.lowerBar {
+    margin-top: 22px;
+}

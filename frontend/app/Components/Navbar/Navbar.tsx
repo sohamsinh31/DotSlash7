@@ -16,7 +16,7 @@ export const Navbar = () => {
                 <Button height="28px">Next</Button>
             </div>
             <div className="titleBar">
-                <h2>Introduction to C</h2>
+                <h1>Introduction to C</h1>
             </div>
         </div>
     )
