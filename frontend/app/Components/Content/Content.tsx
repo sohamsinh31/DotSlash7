@@ -65,14 +65,17 @@ int main(int argc, char *argv[]) {
                             onClick={handleRunButtonClick}>Run</Button>
                     </Card>
                     <textarea
-                        style={{ fontFamily: 'monospace', padding: '10px', borderRadius: '5px', minHeight: '200px', width: '95%' }}
+                        style={{ fontFamily: 'monospace', padding: '10px', borderRadius: '5px', minHeight: '200px', width: '92%' }}
                         className="codepen"
                         value={code}
                         onChange={(e) => setCode(e.target.value)}
                     />
                 </div>
                 <div className="output">
-                    {output}
+                    <Card>Output:-</Card>
+                    <div className='printer'>
+                        {output}
+                    </div>
                 </div>
                 <div className="table">
                     <table border={1}>

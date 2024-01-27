@@ -10,7 +10,7 @@ const getOutput = (code) => {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            resolve(data.output);
+            resolve(data.output || data.error);
         })
         .catch(error => {
             console.error('Error:', error);

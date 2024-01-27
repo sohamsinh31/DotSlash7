@@ -21,7 +21,7 @@
 }
 
 .codeBar {
-    width: 50%;
+    width: 48%;
     border: 1px solid white;
     border-radius: 12px;
 }
@@ -36,4 +36,16 @@
     width: 47%;
     margin-left: 19px;
     border-radius: 8px;
+}
+
+.output {
+    margin: 6px;
+    border: 1px solid white;
+    border-radius: 12px;
+    padding: 2px;
+    width: 30%;
+}
+
+.printer {
+    padding: 15px;
 }
