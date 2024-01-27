@@ -18,6 +18,7 @@ export const Button = (props: BtnProps) => {
                 backgroundColor: props.bgColor ? props.bgColor : "none",
                 ...props.style
             }}
+            onClick={props.onClick}
         >
             {props.children}
         </button>

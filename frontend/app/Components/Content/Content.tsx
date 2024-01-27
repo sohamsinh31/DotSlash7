@@ -4,6 +4,14 @@ import Card from "../Card";
 import "./Content.css";
 import { analyzeCode } from '@/Services/CodeT';
 
+interface MemoryStackItem {
+    variableName?: any;
+    dataType?: any;
+    bytesize: string | number;
+    time: string | number;
+    functionName?: any;
+}
+
 const Content = () => {
     const [code, setCode] = useState(`#include <stdio.h>
 
@@ -18,9 +26,11 @@ int main(int argc, char *argv[]) {
     console.log(codeAnalysisResult);
 
     // console.log(code)
-    const [memoryStack, setMemoryStack] = useState([]);
+    const [memoryStack, setMemoryStack] = useState<MemoryStackItem[]>([]);
 
     const handleRunButtonClick = () => {
+        console.log("button clicked")
+        setMemoryStack(analyzeCode(code))
     };
 
     return (
@@ -65,9 +75,9 @@ int main(int argc, char *argv[]) {
                         <tbody>
                             {memoryStack.map((variable, index) => (
                                 <tr key={index}>
-                                    <td>main</td>
-                                    <td>4</td>
-                                    <td>1</td>
+                                    <td>{variable.variableName ||variable.functionName}</td>
+                                    <td>{variable.bytesize}</td>
+                                    <td>{variable.time}</td>
                                 </tr>
                             ))}
                         </tbody>
