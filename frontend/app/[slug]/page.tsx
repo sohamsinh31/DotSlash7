@@ -12,7 +12,7 @@ const paths = [
 
 export default function Slug() {
     const pathname = usePathname()
-    const [currentPage, setCurrentPage] = useState<React.ReactNode | null>(null); // Set the initial state as null
+    const [currentPage, setCurrentPage] = useState<React.ReactNode | null>(null);
 
     useEffect(() => {
         const page = paths.find(val => val.path === pathname)?.page || null;

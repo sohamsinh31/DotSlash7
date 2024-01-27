@@ -1,11 +1,20 @@
+import "./Button.css"
+
 type BtnProps = {
-    children: React.ReactNode
+    children: React.ReactNode,
+    bgColor?: string,
+    color?: string
 }
 
 export const Button = (props: BtnProps) => {
     return (
-        <Button>
+        <button
+            className="button"
+            style={{
+                backgroundColor: props.bgColor ? props.bgColor : "none"
+            }}
+        >
             {props.children}
-        </Button>
+        </button>
     )
 }

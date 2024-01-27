@@ -4,7 +4,8 @@ import "./Navbar.css"
 export const Navbar = () => {
     return (
         <div className="navbar">
-            <button>Back</button>
+            <Button>Back</Button>
+            <Button>Back</Button>
         </div>
     )
 }
