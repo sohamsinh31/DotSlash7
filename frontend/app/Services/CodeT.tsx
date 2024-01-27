@@ -96,3 +96,50 @@ export function analyzeCode(code: string) {
 
     return result;
 }
+
+interface GraphNode {
+    id: string;
+    label: string;
+}
+
+interface GraphLink {
+    source: string;
+    target: string;
+}
+
+interface GraphData {
+    nodes: GraphNode[];
+    links: GraphLink[];
+}
+
+export function createGraphData(edgesString: string): GraphData {
+    const edges = edgesString
+        .trim()
+        .split('\n')
+        .map(edge => {
+            const match = edge.match(/\((\d+), (\d+)\)/);
+            return match ? match.slice(1).map(Number) : [];
+        })
+        .filter(edge => edge.length === 2);
+
+    const graphData: GraphData = { nodes: [], links: [] };
+
+    // Extract unique vertices from the edges
+    const vertices = Array.from(new Set(edges.flat()));
+
+    // Create nodes
+    graphData.nodes = vertices.map((vertex) => ({
+        id: `Node${vertex}`,
+        label: `Value ${vertex}`
+    }));
+
+    // Create links
+    edges.forEach(([source, target]) => {
+        graphData.links.push({
+            source: `Node${source}`,
+            target: `Node${target}`
+        });
+    });
+
+    return graphData;
+}
