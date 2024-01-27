@@ -1,4 +1,4 @@
-import { Button } from "../Button/Button"
+import Button from "../Button"
 import { Searchbar } from "../SearchBar/searchbar"
 import "./Navbar.css"
 

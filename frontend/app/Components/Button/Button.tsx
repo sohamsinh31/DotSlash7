@@ -6,7 +6,8 @@ type BtnProps = {
     color?: string,
     width?: string,
     height?: string,
-    style?: React.CSSProperties
+    style?: React.CSSProperties,
+    onClick?: () => void
 }
 
 export const Button = (props: BtnProps) => {

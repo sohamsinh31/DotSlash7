@@ -1,0 +1,28 @@
+<html>
+  <body>
+    Here is one mermaid diagram:
+    <pre class="mermaid">
+            graph TD 
+            A[Client] --> B[Load Balancer] 
+            B --> C[Server1] 
+            B --> D[Server2]
+    </pre>
+
+    And here is another:
+    <pre class="mermaid">
+        graph TD
+          A[Start] --> B[Initialize a]
+          B --> C[Initialize b]
+          C --> D[Calculate sum]
+          D --> E[Display sum]
+          E --> F[Print Hello world]
+          F --> G[End]
+      </pre>
+      
+
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+  </body>
+</html>

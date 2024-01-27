@@ -1,8 +1,28 @@
-import Button from "../Button"
-import Card from "../Card"
-import "./Content.css"
+import React, { useState } from 'react';
+import Button from "../Button";
+import Card from "../Card";
+import "./Content.css";
+import { analyzeCode } from '@/Services/CodeT';
 
-export const Content = () => {
+const Content = () => {
+    const [code, setCode] = useState(`#include <stdio.h>
+
+int main(int argc, char *argv[]) {
+    int sum = 10;
+    printf("Hello world");
+    return 0;
+}`);
+
+    // Example usage:
+    const codeAnalysisResult = analyzeCode(code);
+    console.log(codeAnalysisResult);
+
+    // console.log(code)
+    const [memoryStack, setMemoryStack] = useState([]);
+
+    const handleRunButtonClick = () => {
+    };
+
     return (
         <div className="content">
             <div className="upperBar">
@@ -22,9 +42,40 @@ export const Content = () => {
             </div>
             <div className="lowerBar">
                 <div className="codeBar">
-                    <Card><Button style={{color: 'blue'}}>Run</Button></Card>
+                    <Card style={{ borderRadius: '10px' }}>
+                        <Button bgColor="#0AB663" style={{ color: 'blue' }}
+                            onClick={handleRunButtonClick}>Run</Button>
+                    </Card>
+                    <textarea
+                        style={{ fontFamily: 'monospace', padding: '10px', borderRadius: '5px', minHeight: '200px', width: '95%' }}
+                        className="codepen"
+                        value={code}
+                        onChange={(e) => setCode(e.target.value)}
+                    />
+                </div>
+                <div className="table">
+                    <table border={1}>
+                        <thead>
+                            <tr>
+                                <th>Variable Name</th>
+                                <th>Memory</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {memoryStack.map((variable, index) => (
+                                <tr key={index}>
+                                    <td>main</td>
+                                    <td>4</td>
+                                    <td>1</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
+
+export default Content;

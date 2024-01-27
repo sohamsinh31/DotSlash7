@@ -2,12 +2,13 @@ import "./Card.css"
 
 type CardProps = {
     children: React.ReactNode,
-    varient?: string
+    varient?: string,
+    style?: React.CSSProperties
 }
 
-export const Card = (props:CardProps) => {
+export const Card = (props: CardProps) => {
     return (
-        <div className="cardMain">
+        <div className="cardMain" style={{ ...props.style }}>
             {props.children}
         </div>
     )

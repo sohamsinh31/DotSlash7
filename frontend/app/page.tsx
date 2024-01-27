@@ -1,8 +1,8 @@
-// "use client"
+"use client"
 import React, { useEffect, useState } from 'react';
 import Sidebar from './Components/Sidebar';
 import Navbar from './Components/Navbar';
-import Content from './Components/Content';
+import Content from './Components/Content/Content';
 
 export default function App() {
   return (
