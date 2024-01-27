@@ -34,9 +34,9 @@ int main(int argc, char *argv[]) {
     // console.log(code)
     const [memoryStack, setMemoryStack] = useState<MemoryStackItem[]>([]);
 
-    const handleRunButtonClick = () => {
+    const handleRunButtonClick = async () => {
         console.log("button clicked")
-        setOutput(getOutput(code));
+        setOutput(await getOutput(code));
         console.log(output)
         setMemoryStack(analyzeCode(code))
     };
