@@ -1,0 +1,51 @@
+.upperBar {
+    display: flex;
+}
+
+.textBar {
+    width: 65%;
+}
+
+.imageBar {
+    width: 35%;
+    margin: 1px;
+}
+
+.imageR {
+    width: 480px;
+}
+
+.lowerBar {
+    margin-top: 22px;
+    display: flex;
+}
+
+.codeBar {
+    width: 48%;
+    border: 1px solid white;
+    border-radius: 12px;
+}
+
+.codepen {
+    font-size: 16px;
+    margin: 6px;
+    padding: 6px;
+}
+
+.table {
+    width: 47%;
+    margin-left: 19px;
+    border-radius: 8px;
+}
+
+.output {
+    margin: 6px;
+    border: 1px solid white;
+    border-radius: 12px;
+    padding: 2px;
+    width: 30%;
+}
+
+.printer {
+    padding: 15px;
+}

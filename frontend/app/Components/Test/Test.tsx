@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import Button from "../Button";
-import Card from "../Card";
-import "./Content.css";
+import Button  from '@/Components/Button';
+import Card from "@/Components/Card";
+import "./Test.css";
 import { analyzeCode } from '@/Services/CodeT';
 import getOutput from "../../Services/Compiler.js"
 import HomePage from "@/Services/Data"
+import Stack from '../Stack';
+// import mermaid from 'mermaid';
 
 interface MemoryStackItem {
     variableName?: any;
@@ -14,7 +16,20 @@ interface MemoryStackItem {
     functionName?: any;
 }
 
-const Content = () => {
+const Test = () => {
+
+    // useEffect(() => {
+    //     mermaid.initialize({ startOnLoad: true });
+    //   }, []);
+    
+      const mermaidCode = `
+        graph TD
+        A[Client] --> B[Load Balancer]
+        B --> C[Server1]
+        B --> D[Server2]
+      `;
+
+
     const [output, setOutput] = useState("");
 
     const [code, setCode] = useState(`#include <stdio.h>
@@ -44,14 +59,6 @@ int main(int argc, char *argv[]) {
 
     return (
         <div className="content">
-            <div className="upperBar">
-                <div className="textbar">
-                    <HomePage />
-                </div>
-                <div className="imageBar">
-                    <img className="imageR" src="Assets/clang.png" alt="" />
-                </div>
-            </div>
             <div className="lowerBar">
                 <div className="codeBar">
                     <Card style={{ borderRadius: '10px' }}>
@@ -70,6 +77,10 @@ int main(int argc, char *argv[]) {
                     <div className='printer'>
                         {output}
                     </div>
+                </div>
+                <div className="stack">
+                    <Stack />
+                </div>
                 </div>
                 <div className="table">
                     <table border={1}>
@@ -91,9 +102,8 @@ int main(int argc, char *argv[]) {
                         </tbody>
                     </table>
                 </div>
-            </div>
         </div>
     );
 };
 
-export default Content;
+export default Test;

@@ -1,4 +1,5 @@
 "use client"
+import Test from '@/Components/Test/Test';
 import { Home } from '@/Containers/Home/Home';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -7,7 +8,15 @@ const paths = [
     {
         path: "/",
         page: <Home />
-    }
+    },
+    {
+        path: "/test",
+        page: <Test />
+    },
+    {
+        path: "/demo",
+        page: 
+}
 ]
 
 export default function Slug() {

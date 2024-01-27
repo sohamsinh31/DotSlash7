@@ -1,0 +1,16 @@
+.stack-container {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.stack-item {
+    border: 1px solid #333;
+    padding: 10px;
+    /* margin: 5px; */
+    border-radius: 5px;
+    width: 100px;
+    text-align: center;
+    background-color: #e091f9;
+}

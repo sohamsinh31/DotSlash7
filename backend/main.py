@@ -2,9 +2,11 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import subprocess
 import os
+import flowchart
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+CORS(app) 
+
 
 @app.route('/compile', methods=['POST'])
 def compile_code():
@@ -18,7 +20,8 @@ def compile_code():
             file.write(c_code)
 
         # Compile the C code using gcc
-        result = subprocess.run(['gcc', 'temp.c'], capture_output=True, text=True)
+        result = subprocess.run(
+            ['gcc', 'temp.c'], capture_output=True, text=True)
 
         if result.returncode == 0:
             # If compilation is successful, run the compiled executable
@@ -44,6 +47,15 @@ def compile_code():
 @app.route("/", methods=['GET'])
 def main():
     return jsonify({"status": 200})
+
+
+@app.route("/flowchart", methods=['POST'])
+def flowchartt():
+    c_code = request.json['code']
+    converted = flowchart.convert_c_to_mermaid(c_code)
+    print(converted)
+    return jsonify({'Data': converted})
+
 
 if __name__ == '__main__':
     app.run(port=8000, debug=True)

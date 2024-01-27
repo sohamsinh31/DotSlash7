@@ -13,22 +13,64 @@ export function analyzeCode(code: string) {
 
             // Determine bytesize based on data type
             switch (dataType) {
-                case 'int':
+                case 'short':
+                case 'short int':
+                case 'signed short':
+                case 'signed short int':
+                case 'unsigned short':
+                case 'unsigned short int':
+                    bytesize = 2;
+                    break;
+                case 'unsigned':
+                case 'unsigned int':
                     bytesize = 4;
                     break;
-                case 'char':
+                case 'int':
+                case 'signed':
+                case 'signed int':
+                    bytesize = 4;
+                    break;
+                case 'long':
+                case 'long int':
+                case 'signed long':
+                case 'signed long int':
+                case 'unsigned long':
+                case 'unsigned long int':
+                    bytesize = 4;
+                    break;
+                case 'long long':
+                case 'long long int':
+                case 'signed long long':
+                case 'signed long long int':
+                case 'unsigned long long':
+                case 'unsigned long long int':
                     bytesize = 8;
+                    break;
+                case 'signed char':
+                    bytesize = 1;
+                    break;
+                case 'unsigned char':
+                    bytesize = 1;
+                    break;
+                case 'float':
+                    bytesize = 4;
+                    break;
+                case 'double':
+                    bytesize = 8;
+                    break;
+                case 'long double':
+                    bytesize = 16;
                     break;
                 // Add more cases for other data types as needed
                 default:
-                    bytesize = 'N/A';
+                    bytesize = -1;
             }
 
             // Calculate time complexity for array declarations
             let timeComplexity = 1;
             if (arraySize) {
                 // Assuming each array element uses 4 bytes and accessing an element takes 1 unit of time
-                bytesize = parseInt(arraySize, 10) * 4;
+                bytesize = parseInt(arraySize, 10) * bytesize;
                 timeComplexity = parseInt(arraySize, 10);
             }
 
