@@ -10,7 +10,7 @@ export default function App() {
     <div style={{ display: 'flex', minHeight: '100vh' }}>
       <Sidebar />
       <div className="container" style={{ flex: 1, padding: '20px' }}>
-        <Navbar />
+        <Navbar title='Intoduction to C' />
         <Test />
       </div>
     </div>

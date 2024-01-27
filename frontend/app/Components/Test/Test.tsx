@@ -6,6 +6,7 @@ import { analyzeCode } from '@/Services/CodeT';
 import getOutput from "../../Services/Compiler.js"
 import HomePage from "@/Services/Data"
 import Stack from '../Stack';
+import Memory from '../Memory';
 // import mermaid from 'mermaid';
 
 interface MemoryStackItem {
@@ -82,26 +83,7 @@ int main(int argc, char *argv[]) {
                     <Stack />
                 </div>
                 </div>
-                <div className="table">
-                    <table border={1}>
-                        <thead>
-                            <tr>
-                                <th>Variable Name</th>
-                                <th>Memory</th>
-                                <th>Time</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {memoryStack.map((variable, index) => (
-                                <tr key={index}>
-                                    <td>{variable.variableName || variable.functionName}</td>
-                                    <td>{variable.bytesize}</td>
-                                    <td>{variable.time}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+              <Memory />
         </div>
     );
 };

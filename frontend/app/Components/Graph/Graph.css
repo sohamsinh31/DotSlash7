@@ -1,0 +1,9 @@
+.graph-container {
+    /* position: fixed; */
+    top: 0;
+    right: 0;
+    width: 600px; /* Set your desired width */
+    border: 1px solid #ccc; /* Optional: Add a border for visibility */
+    margin: 20px; /* Optional: Add margin for spacing */
+  }
+  

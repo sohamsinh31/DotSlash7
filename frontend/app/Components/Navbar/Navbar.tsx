@@ -2,7 +2,11 @@ import Button from "../Button"
 import { Searchbar } from "../SearchBar/searchbar"
 import "./Navbar.css"
 
-export const Navbar = () => {
+type NavProps = {
+    title: string
+}
+
+export const Navbar = (props: NavProps) => {
     return (
         <div>
             <div className="navbar">
@@ -16,7 +20,7 @@ export const Navbar = () => {
                 <Button height="28px">Next</Button>
             </div>
             <div className="titleBar">
-                <h1>Introduction to C</h1>
+                <h1>{ props.title }</h1>
             </div>
         </div>
     )

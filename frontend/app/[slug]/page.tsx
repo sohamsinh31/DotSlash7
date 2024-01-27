@@ -1,5 +1,6 @@
 "use client"
 import Test from '@/Components/Test/Test';
+import Demo from '@/Containers/Demo';
 import { Home } from '@/Containers/Home/Home';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -15,7 +16,7 @@ const paths = [
     },
     {
         path: "/demo",
-        page: 
+        page: <Demo />
 }
 ]
 
