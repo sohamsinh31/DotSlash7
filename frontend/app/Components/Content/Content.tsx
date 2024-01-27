@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from "../Button";
 import Card from "../Card";
 import "./Content.css";
 import { analyzeCode } from '@/Services/CodeT';
+import getOutput from "../../Services/Compiler.js"
 
 interface MemoryStackItem {
     variableName?: any;
@@ -13,6 +14,8 @@ interface MemoryStackItem {
 }
 
 const Content = () => {
+    const [output, setOutput] = useState("");
+
     const [code, setCode] = useState(`#include <stdio.h>
 
 int main(int argc, char *argv[]) {
@@ -21,6 +24,9 @@ int main(int argc, char *argv[]) {
     return 0;
 }`);
 
+    // console.log(code)
+
+    // useEffect(() => {
     // Example usage:
     const codeAnalysisResult = analyzeCode(code);
     console.log(codeAnalysisResult);
@@ -30,6 +36,8 @@ int main(int argc, char *argv[]) {
 
     const handleRunButtonClick = () => {
         console.log("button clicked")
+        setOutput(getOutput(code));
+        console.log(output)
         setMemoryStack(analyzeCode(code))
     };
 
@@ -63,6 +71,9 @@ int main(int argc, char *argv[]) {
                         onChange={(e) => setCode(e.target.value)}
                     />
                 </div>
+                <div className="output">
+                    {output}
+                </div>
                 <div className="table">
                     <table border={1}>
                         <thead>
@@ -75,7 +86,7 @@ int main(int argc, char *argv[]) {
                         <tbody>
                             {memoryStack.map((variable, index) => (
                                 <tr key={index}>
-                                    <td>{variable.variableName ||variable.functionName}</td>
+                                    <td>{variable.variableName || variable.functionName}</td>
                                     <td>{variable.bytesize}</td>
                                     <td>{variable.time}</td>
                                 </tr>

@@ -1,14 +1,17 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import subprocess
 import os
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 
 @app.route('/compile', methods=['POST'])
 def compile_code():
     try:
         # Get the C code from the request
         c_code = request.json['code']
+        # print(c_code)
 
         # Write the C code to a temporary file
         with open('temp.c', 'w') as file:
@@ -36,6 +39,11 @@ def compile_code():
 
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)})
+
+
+@app.route("/", methods=['GET'])
+def main():
+    return jsonify({"status": 200})
 
 if __name__ == '__main__':
     app.run(port=8000, debug=True)
