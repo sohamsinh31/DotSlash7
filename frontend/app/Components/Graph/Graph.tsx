@@ -1,23 +1,19 @@
 import React from 'react';
-import { Graph } from 'react-d3-graph';
+import { Graph, GraphLink } from 'react-d3-graph';
 import './Graph.css'; // Import the CSS file for styling
 
-// Graph payload for a 6-node graph with values
-const data = {
-  nodes: [
-    { id: 'Node1', label: 'Value 1' },
-    { id: 'Node2', label: 'Value 2' },
-    { id: 'Node3', label: 'Value 3' },
-    { id: 'Node4', label: 'Value 4' },
-    { id: 'Node5', label: 'Value 5' },
-  ],
-  links: [
-    { source: 'Node1', target: 'Node2' },
-    { source: 'Node1', target: 'Node3' },
-    { source: 'Node2', target: 'Node4' },
-    { source: 'Node2', target: 'Node5' },
-  ],
-};
+// Define the props for the GraphComponent
+interface GraphComponentProps {
+  graphData: {
+    nodes: GraphNode[]; // Change the type to GraphNode[]
+    links: GraphLink[];
+  };
+}
+
+interface GraphNode {
+  id: string;
+  label?: string;
+}
 
 // The graph configuration
 const myConfig = {
@@ -44,11 +40,12 @@ const onClickLink = function (source: string, target: string) {
   window.alert(`Clicked link between ${source} and ${target}`);
 };
 
-const GraphComponent: React.FC = () => (
-  <div className="graph-container"> {/* Add a container div with styling */}
+// GraphComponent now accepts graphData as a prop
+const GraphComponent: React.FC<GraphComponentProps> = ({ graphData }) => (
+  <div className="graph-container">
     <Graph
       id="graph-id" // id is mandatory
-      data={data}
+      data={graphData}
       config={myConfig}
       onClickNode={onClickNode}
       onClickLink={onClickLink}
