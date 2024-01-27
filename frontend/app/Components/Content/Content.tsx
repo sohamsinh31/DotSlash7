@@ -1,29 +1,29 @@
+// Content.jsx
 import React, { useState } from 'react';
 import Button from '../Button';
 import Card from '../Card';
-import './Content.css';
+import HomePage from '@/Services/Data';
+import CodeTextArea from '../CodeText';
+import MemoryTable, { MemoryStackItem } from '../Memory/Memory';
 import { analyzeCode } from '@/Services/CodeT';
 import getOutput from '../../Services/Compiler.js';
-import HomePage from '@/Services/Data';
-import MemoryTable, { MemoryStackItem } from '../Memory/Memory';
+import OutputWindow from '../Output/Output';
 
 const Content = () => {
   const [output, setOutput] = useState('');
-
   const [code, setCode] = useState(`#include <stdio.h>
 
 int main(int argc, char *argv[]) {
     int sum = 10;
     printf("Hello world");
     return 0;
-}`);
+  }`);
 
   const [memoryStack, setMemoryStack] = useState<MemoryStackItem[]>([]);
 
   const handleRunButtonClick = async () => {
     console.log('button clicked');
     setOutput(await getOutput(code));
-    console.log(output);
     setMemoryStack(analyzeCode(code));
   };
 
@@ -44,17 +44,9 @@ int main(int argc, char *argv[]) {
               Run
             </Button>
           </Card>
-          <textarea
-            style={{ fontFamily: 'monospace', padding: '10px', borderRadius: '5px', minHeight: '200px', width: '92%' }}
-            className="codepen"
-            value={code}
-            onChange={(e) => setCode(e.target.value)}
-          />
+          <CodeTextArea value={code} onChange={(e) => setCode(e.target.value)} />
         </div>
-        <div className="output">
-          <Card>Output:-</Card>
-          <div className="printer">{output}</div>
-        </div>
+        <OutputWindow output={output} />
         <MemoryTable memoryStackItems={memoryStack} />
       </div>
     </div>
