@@ -1,5 +1,17 @@
-.table {
+/* .table {
     width: 47%;
-    margin-left: 19px;
-    border-radius: 8px;
-}
+    margin-left: 25px;
+    border-radius: 15px;
+    padding-left: 10px;
+}  */
+/* Add this to your existing CSS or create a new CSS file */
+.memory-table {
+    width: 100%; /* Set the width of the table to 100% */
+    border-collapse: collapse; /* Collapse borders between cells */
+  }
+  
+  .memory-table th, .memory-table td {
+    padding: 18px; /* Set padding for cells */
+    text-align: left; /* Align text to the left within cells */
+  }
+  

@@ -1,25 +1,34 @@
 <html>
+  <head>
+    <script type='module'>
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      window.mermaid = mermaid; // expose mermaid to the global scope
+    </script>
+  </head>
   <body>
     Here is one mermaid diagram:
-    <pre class="mermaid">
-            graph TD 
-            A[Client] --> B[Load Balancer] 
-            B --> C[Server1] 
-            B --> D[Server2]
-    </pre>
+    <button onclick="loadFlow()">
+      Submit
+    </button>
 
     And here is another:
-    <pre class="mermaid">
-            graph TD 
-            A[Client] -->|tcp_123| B
-            B(Load Balancer) 
-            B -->|tcp_456| C[Server1] 
-            B -->|tcp_456| D[Server2]
-    </pre>
+    <div id="mainm"></div>
 
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
+    <script>
+      function loadFlow() {
+        let div = document.getElementById("mainm");
+        div.innerHTML = `
+          <pre class="mermaid">
+            graph TD
+              A[Client] -->|tcp_123| B
+              B(Load Balancer)
+              B -->|tcp_456| C[Server1]
+              B -->|tcp_456| D[Server2]
+          </pre>
+        `;
+
+        mermaid.init(); // Initialize mermaid again after changing the content
+      }
     </script>
   </body>
 </html>
