@@ -6,28 +6,39 @@
     </script>
   </head>
   <body>
-    Here is one mermaid diagram:
-    <button onclick="loadFlow()">
-      Submit
-    </button>
+    <textarea id="code" cols="30" rows="10"></textarea>
+    <button onclick="loadFlow()">Submit</button>
 
     And here is another:
     <div id="mainm"></div>
 
     <script>
-      function loadFlow() {
+      async function loadFlow() {
         let div = document.getElementById("mainm");
-        div.innerHTML = `
-          <pre class="mermaid">
-            graph TD
-              A[Client] -->|tcp_123| B
-              B(Load Balancer)
-              B -->|tcp_456| C[Server1]
-              B -->|tcp_456| D[Server2]
-          </pre>
-        `;
+        let code = document.getElementById("code").value;
 
-        mermaid.init(); // Initialize mermaid again after changing the content
+        // Make a POST request to your API
+        const response = await fetch('http://localhost:8000/flowchart', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ code }),
+        });
+
+        if (response.ok) {
+          // Assuming the API response contains the innerHTML
+          const { innerHTML } = await response.json();
+          console.log(innerHTML)
+          
+          // Update the content of mainm with the API response
+          div.innerHTML = innerHTML;
+          
+          // Initialize mermaid again after changing the content
+          mermaid.init();
+        } else {
+          console.error('Failed to fetch data from the API');
+        }
       }
     </script>
   </body>

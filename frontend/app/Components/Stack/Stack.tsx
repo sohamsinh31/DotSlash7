@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface StackProps {
-  items: string[];
+    items: string[];
 }
 
 const StackContainer = styled.div`
@@ -14,20 +14,25 @@ const StackContainer = styled.div`
   margin: 13px;
 `;
 
-const StackItem = styled.div`
-  border-bottom: 1px solid #ddd;
+const RoundedStackItem = styled.div`
+color:black;
+  border: 2px solid #ccc;
+  border-radius: 10px;
   padding: 8px;
+  margin-bottom: 8px;
+  background-color: #fff; /* Set your preferred background color */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 `;
 
 const Stack: React.FC<StackProps> = ({ items }) => {
-  return (
-    <StackContainer>
-      <div>Execution Stack</div>
-      {items.map((item, index) => (
-        <StackItem key={index}>{item}</StackItem>
-      ))}
-    </StackContainer>
-  );
+    return (
+        <StackContainer>
+            <div>Execution Stack</div>
+            {items.map((item, index) => (
+                <RoundedStackItem key={index}>{item}</RoundedStackItem>
+            ))}
+        </StackContainer>
+    );
 };
 
 export default Stack;
