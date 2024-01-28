@@ -1,5 +1,6 @@
 import re
 
+
 def convert_c_to_mermaid(c_code):
     mermaid_code = """
     <pre class="mermaid">
