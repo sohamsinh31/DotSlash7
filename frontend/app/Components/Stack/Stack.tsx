@@ -11,6 +11,7 @@ const StackContainer = styled.div`
   border-radius: 5px;
   padding: 10px;
   width: 150px;
+  margin: 13px;
 `;
 
 const StackItem = styled.div`

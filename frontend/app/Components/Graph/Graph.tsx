@@ -22,13 +22,13 @@ const myConfig = {
     color: 'lightgreen',
     size: 300, // Increased node size
     highlightStrokeColor: 'blue',
-    fontColor: 'white', // Text color
+    fontColor: 'white',
   },
   link: {
     highlightColor: 'lightblue',
   },
   d3: {
-    gravity: -300, // Pull nodes to the center more strongly
+    gravity: -300 // Pull nodes to the center more strongly
   },
 };
 

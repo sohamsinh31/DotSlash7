@@ -71,7 +71,8 @@ export const TestA: React.FC = () => {
                 <Navbar title="Trees In C" />
                 <div style={{ display: 'flex' }}>
                     {/* <Tree /> */}
-                    <GraphComponent graphData={graphData} />
+                    <GraphComponent graphData={graphData}
+                     />
                     <Stack items={executionStack}/>
                 </div>
                 <div className="lowerBar">
