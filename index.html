@@ -28,11 +28,11 @@
 
         if (response.ok) {
           // Assuming the API response contains the innerHTML
-          const { innerHTML } = await response.json();
-          console.log(innerHTML)
+          const { Data } = await response.json();
+          console.log(Data)
           
           // Update the content of mainm with the API response
-          div.innerHTML = innerHTML;
+          div.innerHTML = Data;
           
           // Initialize mermaid again after changing the content
           mermaid.init();
