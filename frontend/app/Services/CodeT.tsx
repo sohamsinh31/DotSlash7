@@ -143,3 +143,45 @@ export function createGraphData(edgesString: string): GraphData {
 
     return graphData;
 }
+
+type FunctionInfo = {
+    functionName: string;
+    callCount: number;
+    recursive: boolean;
+};
+
+export const analyzeCodeForFunctions = (code: string): FunctionInfo[] => {
+    const functionDeclarationRegex = /(\w+)\s+(\w+)\s*\([^)]*\)\s*{/g;
+    const functionCallRegex = /(\w+)\s*\([^)]*\);/g;
+
+    const functions = new Map<string, FunctionInfo>();
+
+    let match;
+
+    // Find function declarations
+    while ((match = functionDeclarationRegex.exec(code)) !== null) {
+        const [, returnType, functionName] = match;
+        functions.set(functionName, { functionName, callCount: 0, recursive: false });
+    }
+
+    // Find function calls
+    while ((match = functionCallRegex.exec(code)) !== null) {
+        const [, functionName] = match;
+        if (functions.has(functionName)) {
+            const functionInfo = functions.get(functionName)!;
+            functionInfo.callCount += 1;
+            functions.set(functionName, functionInfo);
+        }
+    }
+
+    // Check for recursion
+    for (const [functionName, functionInfo] of Array.from(functions.entries())) {
+        const recursionRegex = new RegExp(`\\b${functionName}\\s*\\([^)]*${functionName}[^)]*\\)\\s*;`, 'g');
+        if (recursionRegex.test(code)) {
+            functionInfo.recursive = true;
+            functions.set(functionName, functionInfo);
+        }
+    }
+
+    return Array.from(functions.values());
+};
